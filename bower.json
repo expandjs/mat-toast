@@ -28,6 +28,7 @@
     "polymer": "Polymer/polymer#^1.0.0"
   },
   "devDependencies": {
+    "mat-button": "ExpandJS/mat-button#0.9.8",
     "mat-demo": "ExpandJS/mat-demo#0.9.8"
   }
 }
