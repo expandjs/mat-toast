@@ -19,7 +19,7 @@ An element used to display a Material Design toast.
 
 @behavior xp-toast-behavior /bower_components/xp-toast-behavior/xp-toast-behavior.html
 
-@dependency polymer Polymer/polymer#^1.0.0
+@dependency polymer Polymer/polymer#^1.1.0
 @dependency expandjs ExpandJS/expandjs#0.9.8
 @dependency mat-typography ExpandJS/mat-typography#0.9.8
 @dependency xp-toast-behavior ExpandJS/xp-toast-behavior#0.9.8
@@ -37,6 +37,8 @@ An element used to display a Material Design toast.
 
     <template>
 
+        <style include="xp-toast-styles"></style>
+
         <style>
             :host {
                 @apply(--mat-font-body);
@@ -45,29 +47,12 @@ An element used to display a Material Design toast.
                 bottom: 12px;
                 box-sizing: border-box;
                 color: hsla(0, 0%, 95%, 1);
-                display: block;
                 height: 48px;
                 left: 12px;
-                overflow: hidden;
                 padding: 14px 24px;
-                position: fixed;
                 right: 12px;
-                -webkit-transform: translate(0, 100px);
-                transform: translate(0, 100px);
-                -webkit-transition: -webkit-transform 0.5s;
-                transition: transform 0.5s;
-                visibility: hidden;
-                will-change: -webkit-transform, transform;
-                z-index: 9999;
-            }
-
-            :host([showed]) {
-                -webkit-transform: translate(0, 0);
-                transform: translate(0, 0);
-            }
-
-            :host(:not([showed])) {
-                display: none !important;
+                -webkit-transform: translate(0, 72px);
+                transform: translate(0, 72px);
             }
 
             :host #matToastLabel {
