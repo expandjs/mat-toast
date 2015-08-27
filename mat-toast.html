@@ -35,63 +35,60 @@ An element used to display a Material Design toast.
 
 <dom-module name="mat-toast">
 
-    <style>
-        :host {
-            @apply(--mat-font-body);
-            background: hsla(0, 0%, 20%, 1);
-            border-radius: 24px;
-            bottom: 12px;
-            box-sizing: border-box;
-            color: hsla(0, 0%, 95%, 1);
-            display: block;
-            height: 48px;
-            left: 12px;
-            overflow: hidden;
-            padding: 14px 24px;
-            position: fixed;
-            right: 12px;
-            -webkit-transform: translate(0, 100px);
-            transform: translate(0, 100px);
-            -webkit-transition: -webkit-transform 0.5s;
-            transition: transform 0.5s;
-            visibility: hidden;
-            will-change: -webkit-transform, transform;
-        }
-
-        :host([showed]) {
-            -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-            visibility: visible;
-        }
-
-        :host #matToastLabel {
-            opacity: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-transition: opacity 1s;
-            transition: opacity 1s;
-            white-space: nowrap;
-            will-change: opacity;
-        }
-
-        :host([showed]) #matToastLabel {
-            opacity: 1;
-        }
-
-        /* TABLET */
-
-        @media (min-width: 960px) {
-
-            :host {
-                max-width: 568px;
-                min-width: 288px;
-                right: auto;
-            }
-        }
-    </style>
-
     <template>
+
+        <style>
+            :host {
+                @apply(--mat-font-body);
+                background: hsla(0, 0%, 20%, 1);
+                border-radius: 24px;
+                bottom: 12px;
+                box-sizing: border-box;
+                color: hsla(0, 0%, 95%, 1);
+                display: block;
+                height: 48px;
+                left: 12px;
+                opacity: 0;
+                overflow: hidden;
+                padding: 14px 24px;
+                position: fixed;
+                right: 12px;
+                -webkit-transform: translate(0, 100px);
+                transform: translate(0, 100px);
+                -webkit-transition: opacity 1s, -webkit-transform 0.5s, visibility 1s;
+                transition: opacity 1s, transform 0.5s, visibility 1s;
+                visibility: hidden;
+                will-change: opacity, -webkit-transform, transform, visibility;
+                z-index: 9999;
+            }
+
+            :host([showed]) {
+                opacity: 1;
+                -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+                visibility: visible;
+            }
+
+            :host #matToastLabel {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            /* TABLET */
+
+            @media (min-width: 960px) {
+
+                :host {
+                    max-width: 568px;
+                    min-width: 288px;
+                    right: auto;
+                }
+            }
+        </style>
+
         <div id="matToastLabel">{{label}}</div>
+
     </template>
 
     <script>
@@ -103,7 +100,26 @@ An element used to display a Material Design toast.
             // BEHAVIORS
             behaviors: [
                 Polymer.XPToastBehavior
-            ]
+            ],
+
+            /*********************************************************************/
+
+            // PROPERTIES
+            properties: {
+
+                /**
+                 * If set to true, the overlay will not close by clicking outside.
+                 *
+                 * @attribute auto-hide-disabled
+                 * @type boolean
+                 * @default true
+                 */
+                autoHideDisabled: {
+                    reflectToAttribute: true,
+                    type: Boolean,
+                    value: true
+                }
+            }
         });
     </script>
 
