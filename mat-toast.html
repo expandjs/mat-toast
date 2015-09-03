@@ -7,7 +7,13 @@ The complete set of contributors may be found at https://expandjs.github.io/CONT
 -->
 
 <!--
-An element used to display a Material Design toast.
+An element used to display a [Material Design toast]((http://www.google.com/design/spec/components/snackbars-toasts.html)).
+
+It should be used to send system messages to a user.
+
+```html
+<mat-toast label="The battery is getting low. 5% remaining."></mat-toast>
+```
 
 @element mat-toast
 @description A custom element used to display a Material Design toast
@@ -63,7 +69,7 @@ An element used to display a Material Design toast.
                 white-space: nowrap;
                 will-change: opacity;
             }
-            
+
             :host([showed]) #matToastLabel {
                 opacity: 1;
             }
