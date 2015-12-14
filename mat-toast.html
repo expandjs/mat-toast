@@ -7,41 +7,43 @@ The complete set of contributors may be found at https://expandjs.github.io/CONT
 -->
 
 <!--
-An element used to display a [Material Design toast](http://www.google.com/design/spec/components/snackbars-toasts.html).
+A custom element used to display a [Material Design toast](http://www.google.com/design/spec/components/snackbars-toasts.html).
 
 It should be used to send system messages to a user.
 
 ```html
-<mat-toast label="The battery is getting low. 5% remaining."></mat-toast>
+<mat-toast label="The battery is getting low: 15% remaining"></mat-toast>
 ```
 
 @element mat-toast
 @description A custom element used to display a Material Design toast
-@keywords material design, material toast, web app, html5, expandjs, web-components
+@keywords material design, expandjs, web app, custom elements, web-components
 @group accessibility
+
 @homepage http://expandjs.com/elements/mat-toast
 @repository https://github.com/ExpandJS/mat-toast
 @demo http://expandjs.com/demo/mat-toast
 
 @behavior xp-toast-behavior /bower_components/xp-toast-behavior/xp-toast-behavior.html
 
-@dependency polymer Polymer/polymer#^1.1.0
-@dependency expandjs ExpandJS/expandjs#0.9.11
-@dependency mat-typography ExpandJS/mat-typography#0.9.11
-@dependency xp-toast-behavior ExpandJS/xp-toast-behavior#0.9.11
+@dependency polymer Polymer/polymer#^1.2.0
+@dependency expandjs ExpandJS/expandjs#0.10.0
+@dependency mat-typography ExpandJS/mat-typography#0.10.0
+@dependency xp-toast-behavior ExpandJS/xp-toast-behavior#0.10.0
 
-@devDependency mat-button ExpandJS/mat-button#0.9.11
-@devDependency mat-demo ExpandJS/mat-demo#0.9.11
+@devDependency mat-button ExpandJS/mat-button#0.10.0
+@devDependency mat-demo ExpandJS/mat-demo#0.10.0
 -->
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../expandjs/expandjs.html">
 <link rel="import" href="../mat-typography/mat-typography.html">
 <link rel="import" href="../xp-toast-behavior/xp-toast-behavior.html">
+<link rel="import" href="../xp-toast-behavior/xp-toast-styles.html">
 
-<dom-module name="mat-toast">
+<dom-module id="mat-toast">
 
-    <template>
+    <template strip-whitespace>
 
         <style include="xp-toast-styles"></style>
 
@@ -51,7 +53,6 @@ It should be used to send system messages to a user.
                 background: hsla(0, 0%, 20%, 1);
                 border-radius: 24px;
                 bottom: 12px;
-                box-sizing: border-box;
                 color: hsla(0, 0%, 95%, 1);
                 height: 48px;
                 left: 12px;
@@ -61,20 +62,7 @@ It should be used to send system messages to a user.
                 transform: translate(0, 72px);
             }
 
-            :host #matToastLabel {
-                opacity: 0;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                transition: opacity 1s;
-                white-space: nowrap;
-                will-change: opacity;
-            }
-
-            :host([showed]) #matToastLabel {
-                opacity: 1;
-            }
-
-            /* TABLET */
+            /* DESKTOP */
 
             @media (min-width: 960px) {
 
@@ -86,7 +74,7 @@ It should be used to send system messages to a user.
             }
         </style>
 
-        <div id="matToastLabel">{{label}}</div>
+        <div class="wrapper">[[label]]</div>
 
     </template>
 
@@ -99,26 +87,7 @@ It should be used to send system messages to a user.
             // BEHAVIORS
             behaviors: [
                 Polymer.XPToastBehavior
-            ],
-
-            /*********************************************************************/
-
-            // PROPERTIES
-            properties: {
-
-                /**
-                 * If set to true, the overlay will not close by clicking outside.
-                 *
-                 * @attribute auto-hide-disabled
-                 * @type boolean
-                 * @default true
-                 */
-                autoHideDisabled: {
-                    reflectToAttribute: true,
-                    type: Boolean,
-                    value: true
-                }
-            }
+            ]
         });
     </script>
 
